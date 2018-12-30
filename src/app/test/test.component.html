@@ -1,0 +1,76 @@
+<p>
+  test works!
+</p>
+
+<h1>MyUsers</h1>
+
+<ul *ngIf="myUsers">
+  <li *ngFor="let u of myUsers">
+
+    <p>{{ u.email}} {{ u.artistName}}</p>
+  </li>
+</ul>
+
+
+<h1>Save MyUser Method Get via model-class</h1>
+
+<form [formGroup]="createUserGetFrom" (ngSubmit)="onSubmit()">
+
+  <h5 *ngIf="success">Your form is valid!</h5>
+
+  <label>
+      email:
+      <textarea formControlName="email"></textarea>
+      <div *ngIf="submitted && createUserGetFrom.controls.email.errors" class="error">
+        <div *ngIf="createUserGetFrom.controls.email.errors.required">A email is required</div>
+      </div>
+    </label>
+
+  <label>
+    artistName:
+    <input type="text" formControlName="artistName">
+    <div *ngIf="submitted && createUserGetFrom.controls.artistName.errors" class="error">
+      <div *ngIf="createUserGetFrom.controls.artistName.errors.required">Your artistName is required</div>
+    </div>
+  </label>
+
+  <label>
+      lastName:
+      <textarea formControlName="lastName"></textarea>
+      <div *ngIf="submitted && createUserGetFrom.controls.lastName.errors" class="error">
+        <div *ngIf="createUserGetFrom.controls.lastName.errors.required">A lastName is required</div>
+      </div>
+    </label>
+
+  <label>
+      firstName:
+    <input type="text" formControlName="firstName">
+    <div *ngIf="submitted && createUserGetFrom.controls.firstName.errors" class="error">
+      <div *ngIf="createUserGetFrom.controls.firstName.errors.required">Your firstName is required</div>
+    </div>
+  </label>
+
+  <input type="submit" value="Send message" class="cta">
+
+</form>
+
+
+<div *ngIf="submitted" class="results">
+
+  <strong>email:</strong>
+  <span>{{ createUserGetFrom.controls.email.value }}</span>
+
+  <strong>artistName:</strong>
+  <span>{{ createUserGetFrom.controls.artistName.value }}</span>
+
+  <strong>lastName:</strong>
+  <span>{{ createUserGetFrom.controls.lastName.value }}</span>
+
+  <strong>firstName:</strong>
+  <span>{{ createUserGetFrom.controls.firstName.value }}</span>
+</div>
+
+<div *ngIf="myUserDtoReturn">
+  <p>Retour du MyUserDto depuis dataBase</p>
+  {{myUserDtoReturn.email}} a été créé
+</div>
