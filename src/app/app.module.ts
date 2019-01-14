@@ -10,8 +10,12 @@ import { HomeComponent } from './home/home.component';
 import { TestService } from 'src/services/test.service';
 import { TestComponent } from './test/test.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Test02Component } from './test02/test02.component';
+import { environment } from 'src/environments/environment.prod';
+import { ConnexionComponent } from './connexion/connexion.component';
+
+
 
 @NgModule({
   declarations: [
@@ -21,13 +25,15 @@ import { Test02Component } from './test02/test02.component';
     ContactComponent,
     HomeComponent,
     TestComponent,
-    Test02Component
+    Test02Component,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,    // <-- Right here
-    ReactiveFormsModule  // <- Add here
+    ReactiveFormsModule,  // <- Add here
+    FormsModule,
   ],
   providers: [
     TestService

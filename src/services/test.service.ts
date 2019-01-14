@@ -24,4 +24,8 @@ export class TestService {
     return this.http.post<MyUserClass>('http://localhost:8080/PromArtisteJEEBack-web/rest/TestController/saveMyUserPost/', myUserClass)
   }
 
+  toConnectMethodGet(email:string,password:string){
+    return this.http.get('http://localhost:8080/PromArtisteJEEBack-web/rest/TestController/toConnectGet/'+email+'/'+password+'/')
+  }
+
 }

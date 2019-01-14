@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -10,9 +12,11 @@ export class NavComponent implements OnInit {
   // OR (either will work)
   appTitle = 'PromoArtist';
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
   }
+
 
 }
