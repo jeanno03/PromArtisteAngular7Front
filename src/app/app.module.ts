@@ -14,6 +14,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Test02Component } from './test02/test02.component';
 import { environment } from 'src/environments/environment.prod';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { Test03Component } from './test03/test03.component';
+import { JwtService } from 'src/services/jwt.service';
 
 
 
@@ -27,6 +29,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
     TestComponent,
     Test02Component,
     ConnexionComponent,
+    Test03Component,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
     FormsModule,
   ],
   providers: [
-    TestService
+    TestService,
+    JwtService
   ],
   bootstrap: [AppComponent]
 })

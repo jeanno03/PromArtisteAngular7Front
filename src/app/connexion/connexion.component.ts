@@ -32,7 +32,7 @@ export class ConnexionComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
     });
   }
-
+	//phou.jeannory@gmail.com 12345678
   onSubmit() {
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
