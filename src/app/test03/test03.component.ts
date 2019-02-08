@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JwtService } from 'src/services/jwt.service';
 import { MyUser } from 'src/model-interfaces/my-user';
-import {Credential} from 'src/model-classes/credential';
+import { Credential } from 'src/model-classes/credential';
 
 @Component({
   selector: 'app-test03',
@@ -10,32 +10,32 @@ import {Credential} from 'src/model-classes/credential';
   styleUrls: ['./test03.component.scss']
 })
 export class Test03Component implements OnInit {
-//npm install --save angular-base64
+  //npm install --save angular-base64
   signupForm: FormGroup;
   errorMessage: string;
-  token:any;
-  credential:Credential;
+  token: any;
+  credential: Credential;
 
   constructor(
-    private formBuilder:FormBuilder,
-    private jwtService:JwtService
+    private formBuilder: FormBuilder,
+    private jwtService: JwtService
   ) { }
 
   ngOnInit() {
     this.initForm();
   }
 
-  initForm(){
+  initForm() {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
     })
   }
 
-  createAutorizationHeader(headers:Headers){
+  createAutorizationHeader(headers: Headers) {
     headers.append('email', btoa('jean.jean@gmail.com'));
     headers.append('mdp', btoa('1234'));
-      }
+  }
 
   // onSubmit(){
   //   const email = this.signupForm.get('email').value;
@@ -52,19 +52,19 @@ export class Test03Component implements OnInit {
   //   })
   // }
 
-	//jean.jean@gmail.com 12345678
-  onSubmit(){
+  //phou.jeannory@gmail.com 12345678
+  onSubmit() {
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
     console.log("email : " + email);
     console.log("password : " + password);
     this.credential = new Credential(email, password);
-    console.log("this.credential .email : " + this.credential .email);
-    console.log("this.credential .mdp): " + this.credential .mdp);
-    this.jwtService.toConnectJwtPost(this.credential ).subscribe(data=>{
-      this.token=data;
-      console.log("token : " + this.token);
-    },err=>{
+    console.log("this.credential .email : " + this.credential.email);
+    console.log("this.credential .mdp): " + this.credential.mdp);
+    this.jwtService.toConnectJwtPost(this.credential).subscribe(data => {
+      this.token = data;
+      console.log("token : " + this.token.token);
+    }, err => {
       console.log(err);
     })
   }

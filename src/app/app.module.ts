@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { Test03Component } from './test03/test03.component';
 import { JwtService } from 'src/services/jwt.service';
+import { Test04Component } from './test04/test04.component';
 
 
 
@@ -30,6 +31,7 @@ import { JwtService } from 'src/services/jwt.service';
     Test02Component,
     ConnexionComponent,
     Test03Component,
+    Test04Component,
   ],
   imports: [
     BrowserModule,
