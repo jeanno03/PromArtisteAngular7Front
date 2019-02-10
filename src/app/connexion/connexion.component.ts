@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MyUser } from 'src/model-interfaces/my-user';
 import { TestService } from 'src/services/test.service';
+import { FormControl } from '@angular/forms';
+import { JwtService } from 'src/services/jwt.service';
+import { Credential } from 'src/model-classes/credential';
 
 @Component({
   selector: 'app-connexion',
@@ -10,40 +13,29 @@ import { TestService } from 'src/services/test.service';
   styleUrls: ['./connexion.component.scss']
 })
 export class ConnexionComponent implements OnInit {
+  email = new FormControl('');
+  password = new FormControl('');
+  token: any;
+  credential:Credential;
 
-  signupForm: FormGroup;
   errorMessage: string;
-  myUserDto: any;
-  myUser : MyUser;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private testService: TestService
+    private jwtService: JwtService
   ) { }
 
   ngOnInit() {
-    this.initForm();
   }
 
-  initForm() {
-    this.signupForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
-    });
-  }
-	//phou.jeannory@gmail.com 12345678
-  onSubmit() {
-    const email = this.signupForm.get('email').value;
-    const password = this.signupForm.get('password').value;
-    this.testService.toConnectMethodGet(email, password).subscribe(data => {
-      this.myUserDto = data;
-      console.log(this.myUserDto.artistName + " est connecté ");
-      this.router.navigate(['/test']);
-    }, err => {
+
+  //phou.jeannory@gmail.com 12345678
+  submitConnexion() {
+    this.credential = new Credential (this.email.value, this.password.value);
+    this.jwtService.toConnectJwtPost(this.credential).subscribe(data => {
+      this.token = data;
+      console.log("token : " + this.token.token);
+    },err=>{
       console.log(err);
     })
-
-
-  }
+  };
 }

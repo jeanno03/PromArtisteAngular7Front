@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { JwtService } from 'src/services/jwt.service';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-test04',
@@ -13,11 +12,9 @@ import { HttpHeaders } from '@angular/common/http';
 export class Test04Component implements OnInit {
   email = new FormControl('');
   password = new FormControl('');
-  headers:HttpHeaders;
   token: any;
-  constructor(
-    private jwtService: JwtService
-  ) { }
+
+  constructor(private jwtService: JwtService) { }
 
   ngOnInit() {
   }
@@ -27,13 +24,20 @@ export class Test04Component implements OnInit {
   }
 
   submitConnexion() {
-    console.log("email : " + this.email.value);
-    console.log("password : " + this.password.value);
-    this.headers = new HttpHeaders();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('email', this.email.value);
-    this.headers.append('mdp', this.password.value);
-    this.jwtService.toConnectJwtTest().subscribe(data => {
+    // const headers = new HttpHeaders(
+    //   {
+    //     'email':this.email.value,
+    //     'mdp':this.password.value
+    //   }
+    //   );
+    //   console.log("email : " + headers.get('email'));
+    //   console.log("mdp : " + headers.get('mdp'));
+
+    // this.headers = new HttpHeaders();
+    // this.headers.append('Content-Type', 'application/json');
+    // this.headers.append('email', this.email.value);
+    // this.headers.append('mdp', this.password.value);
+    this.jwtService.toConnectJwtHeaderV2(this.email.value, this.password.value).subscribe(data => {
       this.token = data;
       console.log("token : " + this.token.token);
     },err=>{
