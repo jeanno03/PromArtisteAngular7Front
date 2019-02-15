@@ -24,19 +24,6 @@ export class Test04Component implements OnInit {
   }
 
   submitConnexion() {
-    // const headers = new HttpHeaders(
-    //   {
-    //     'email':this.email.value,
-    //     'mdp':this.password.value
-    //   }
-    //   );
-    //   console.log("email : " + headers.get('email'));
-    //   console.log("mdp : " + headers.get('mdp'));
-
-    // this.headers = new HttpHeaders();
-    // this.headers.append('Content-Type', 'application/json');
-    // this.headers.append('email', this.email.value);
-    // this.headers.append('mdp', this.password.value);
     this.jwtService.toConnectJwtHeaderV2(this.email.value, this.password.value).subscribe(data => {
       this.token = data;
       console.log("token : " + this.token.token);

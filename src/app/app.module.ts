@@ -17,8 +17,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { Test03Component } from './test03/test03.component';
 import { JwtService } from 'src/services/jwt.service';
 import { Test04Component } from './test04/test04.component';
-
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './../interceptor/tokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,10 @@ import { Test04Component } from './test04/test04.component';
   ],
   providers: [
     TestService,
-    JwtService
+    JwtService,
+    {provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true}
   ],
   bootstrap: [AppComponent]
 })

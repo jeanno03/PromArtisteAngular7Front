@@ -6,6 +6,7 @@ import { TestService } from 'src/services/test.service';
 import { FormControl } from '@angular/forms';
 import { JwtService } from 'src/services/jwt.service';
 import { Credential } from 'src/model-classes/credential';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-connexion',
@@ -16,7 +17,7 @@ export class ConnexionComponent implements OnInit {
   email = new FormControl('');
   password = new FormControl('');
   token: any;
-  credential:Credential;
+  credential: Credential;
 
   errorMessage: string;
 
@@ -26,16 +27,38 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
+  //https://stackblitz.com/edit/angular-6-jwt-authentication-example?file=app%2F_services%2Fauthentication.service.ts
   //phou.jeannory@gmail.com 12345678
   submitConnexion() {
-    this.credential = new Credential (this.email.value, this.password.value);
-    this.jwtService.toConnectJwtPost(this.credential).subscribe(data => {
-      this.token = data;
-      console.log("token : " + this.token.token);
-    },err=>{
-      console.log(err);
-    })
+
+    //ok but test other
+    // this.credential = new Credential (this.email.value, this.password.value);
+    // this.jwtService.toConnectJwtPost(this.credential)
+    // .subscribe(data => {
+    //   this.token = data;
+    //   console.log("token : " + this.token.token);
+    // },err=>{
+    //   console.log(err);
+    // })
+    //https://code.tutsplus.com/tutorials/jwt-authentication-in-angular--cms-32006
+
+    //other ok but test other again
+    this.credential = new Credential(this.email.value, this.password.value);
+    this.jwtService.toConnectJwtPost(this.credential)
+      .subscribe((resp: any) => {
+        localStorage.setItem('token', resp.token);
+        console.log("localStorage.getItem('token') : " + localStorage.getItem('token'));
+
+      }, err => {
+        console.log(err);
+      })
+
   };
+
+
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+
 }
