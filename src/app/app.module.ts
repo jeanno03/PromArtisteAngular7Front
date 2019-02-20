@@ -7,18 +7,21 @@ import { NavComponent } from './nav/nav.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
-import { TestService } from 'src/services/test.service';
-import { TestComponent } from './test/test.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Test02Component } from './test02/test02.component';
 import { environment } from 'src/environments/environment.prod';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { Test03Component } from './test03/test03.component';
 import { JwtService } from 'src/services/jwt.service';
-import { Test04Component } from './test04/test04.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './../interceptor/tokenInterceptor';
+import { TestService } from 'src/services/test.service';
+import { TestComponent } from './test/test/test.component';
+import { Test01Component } from './test/test01/test01.component';
+import { Test02Component } from './test/test02/test02.component';
+import { Test03Component } from './test/test03/test03.component';
+import { Test04Component } from './test/test04/test04.component';
+import { TestModule } from './test/test.module';
+
 
 @NgModule({
   declarations: [
@@ -27,9 +30,10 @@ import { TokenInterceptor } from './../interceptor/tokenInterceptor';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    TestComponent,
-    Test02Component,
     ConnexionComponent,
+    TestComponent,
+    Test01Component,
+    Test02Component,
     Test03Component,
     Test04Component,
   ],
@@ -39,6 +43,7 @@ import { TokenInterceptor } from './../interceptor/tokenInterceptor';
     HttpClientModule,    // <-- Right here
     ReactiveFormsModule,  // <- Add here
     FormsModule,
+    TestModule,
   ],
   providers: [
     TestService,

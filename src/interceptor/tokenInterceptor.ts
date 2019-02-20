@@ -18,7 +18,18 @@ export class TokenInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${this.jwtService.getToken()}`
       }
     });
+    
     console.log("*************** le token : " + this.jwtService.getToken())
+    let jwtData = this.jwtService.getToken().split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData)
+    let myRoles = decodedJwtData.myRoles
+
+    console.log('jwtData : ' + jwtData)
+    console.log('decodedJwtJsonData : ' + decodedJwtJsonData)
+    console.log('decodedJwtData : ' + decodedJwtData)
+    console.log('myRoles : ' + myRoles)
+
     return next.handle(request);
   }
 }

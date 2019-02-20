@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyUserClass } from 'src/model-classes/my-users-class'
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  selector: 'app-test01',
+  templateUrl: './test01.component.html',
+  styleUrls: ['./test01.component.scss']
 })
-export class TestComponent implements OnInit {
+export class Test01Component implements OnInit {
 
   myUsers: Object;
   messageForm: FormGroup;
